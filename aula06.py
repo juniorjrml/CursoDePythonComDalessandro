@@ -40,6 +40,14 @@ with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
 
 # o arquivo "RioDasOstras.csv" foi criado no trecho comentado acima
 # caso queira executar o trecho novamente apague o conteudo ou exclua o arquivo "RioDasOstras.csv" ou ficara com dados duplicados
+
+"""
+Exercicio em grupo: Leia o arquivo csv do site "Brasil IO" e escreva
+em um arquivo JSON, para cada data(date),o numero de novos 
+casos (new_confirmed) e de novos obitos (new_deaths) para a cidade
+de Rio das Ostras.
+"""
+
 nome_arquivo_entrada = "RioDasOstras.csv"
 nome_arquivo_saida = "RioDasOstras.json"
 
