@@ -1,18 +1,15 @@
 """
 todas as funcoes estao do lado de fora das
 condicionais para poder se exportadas
-
-para utilizar o arquivo caso_full.csv sem 
-baixar do site (nao sera o dataset atualizado) 
-basta descompactar o arquivo 
+para utilizar o arquivo caso_full.csv sem
+baixar do site (nao sera o dataset atualizado)
+basta descompactar o arquivo
 caso_full.csv.gz(esta no github junto com esse script
 https://github.com/juniorjrml/CursoDePythonComDalessandro/ )
 e colocar o caso_full.csv na mesma pasta deste script
-
-
-para ver o resultado de algum dos exercicio basta 
-colocar uma string com o numero da aula + _ + o 
-numero do exercicio na lista exercicios ex.: 
+para ver o resultado de algum dos exercicio basta
+colocar uma string com o numero da aula + _ + o
+numero do exercicio na lista exercicios ex.:
 exercicios = ["6_1"]
 ou
 exercicios.append("6_2")
@@ -21,14 +18,16 @@ exercicios.append("6_2")
 
 import json
 import csv
-exercicio = ["6_1","6_2","6_3","6_4"]
+exercicio = ["6_1", "6_2", "6_3", "6_4"]
 
-############# inicio do exercicio 1 ##################
+# _______________inicio do exercicio 1 _______________
 
 # definindo a solucao:
-def mulheres_idade_superior_aX(base,x):
+
+
+def mulheres_idade_superior_a_x(base, x):
     with open(base, 'r') as arquivo_csv:
-        leitor = csv.reader(arquivo_csv, delimiter = ';')
+        leitor = csv.reader(arquivo_csv, delimiter=';')
 
         # primeira linha tem os titulos de cada coluna
         # .__next__() retorna o conteudo atual apontado pelo iterator e avanca para o prox
@@ -38,17 +37,19 @@ def mulheres_idade_superior_aX(base,x):
             if i[2] == 'f' and int(i[1]) > x:
                 print("{}: {} | {}: {}".format(cabecalho[0], i[0], cabecalho[1], i[1]))
 
-if("6_1" in exercicio):
+
+if "6_1" in exercicio:
     print("Exercicio: implemente uma funcao que leia o arquivo CSV indicado")
     print("pelo professor e imprima todas as mulheres com idade acima de um")
     print("valor x fornecido")
-    #utilizando a solucao
-    mulheres_idade_superior_aX("pessoas.csv",15)
+    # utilizando a solucao
+    mulheres_idade_superior_a_x("pessoas.csv", 15)
     print("")
 
-############# fim do exercicio 1 ##################
+# _______________ fim do exercicio 1 _______________
 
-############# inicio do exercicio 2 ##################
+# _______________inicio do exercicio 2 _______________
+
 
 # definindo a solucao:
 def media_alunos(base):
@@ -59,19 +60,22 @@ def media_alunos(base):
             acumulador = 0
             for pessoa in curso['Alunos']:
                 acumulador += pessoa['idade']
-            print("A media das idades dos alunos do curso de {} é {}".format(curso["Curso"], acumulador / quantidade_de_alunos))
+            print("A media das idades dos alunos do curso de {} é {}".format(curso["Curso"],
+                                                                             acumulador / quantidade_de_alunos))
 
-if ("6_2" in exercicio):
+
+if "6_2" in exercicio:
     print("Exercicio: imprima a media dos alunos de cada curso descrito")
     print("no arquivo teste3.json")
-    #utilizando
+    # utilizando
     media_alunos("teste3.json")
     print("")
 
-############# fim do exercicio 2 ##################
+# _______________ fim do exercicio 2 _______________
 
 
-############# inicio do exercicio 3 ##################
+# _______________inicio do exercicio 3 _______________
+
 
 # Solucao:
 def criar_arquivo_cidade_csv(nome_arquivo_entrada, cidade):
@@ -96,23 +100,25 @@ def criar_arquivo_cidade_csv(nome_arquivo_entrada, cidade):
                 if linha[0] == cidade:
                     escritor.writerow(linha)
 
-if ("6_3" in exercicio):
+
+if "6_3" in exercicio:
     print("Exercicio para casa:")
     print("acessar https://brasil.io/dataset/covid19/caso_full/ e baixar o dataset")
     print("ler o arquivo caso_full.csv e criar um arquivo caso_RO.csv com apenas")
     print("as informaçoes da cidade de Rio das Ostras")
     # utilizando a solucao:
-    criar_arquivo_cidade_csv("caso_full.csv","Rio das Ostras")
+    criar_arquivo_cidade_csv("caso_full.csv", "Rio das Ostras")
     print("arquivo criado com sucesso!")
     print("")
 
-############# fim do exercicio 3 ##################
+# _______________ fim do exercicio 3 _______________
 
 
-############# inicio do exercicio 4 ##################
+# _______________inicio do exercicio 4 _______________
+
 
 # Solucao
-def converter_cidade_modelo_json_D_NC_ND(nome_arquivo_entrada,cidade):
+def converter_cidade_modelo_json_d_nc_nd(nome_arquivo_entrada, cidade):
     # cria um csv para a cidade
     criar_arquivo_cidade_csv(nome_arquivo_entrada, cidade)
     # configura o nome do arquivo da cidade criado acima
@@ -124,7 +130,7 @@ def converter_cidade_modelo_json_D_NC_ND(nome_arquivo_entrada,cidade):
         titulos = leitor.__next__()
         nome_arquivo_saida = cidade.replace(" ", "_") + ".json"
 
-        with open(nome_arquivo_saida, 'a') as arquivo_de_saida:
+        with open(nome_arquivo_saida, 'w'):
             pass
 
         for linha in leitor:
@@ -136,13 +142,14 @@ def converter_cidade_modelo_json_D_NC_ND(nome_arquivo_entrada,cidade):
                 # optei por abrir o arquivo diversas vezes(json) para evitar sobrecarregar a memoria
                 json.dump(caso, arquivo_de_saida, indent=2)
 
-if ("6_4" in exercicio):
+
+if "6_4" in exercicio:
     print("Exercicio para casa: Leia o arquivo csv do site 'Brasil IO' e escreva")
     print("em um arquivo JSON, para cada data(date),o numero de novos ")
     print("casos (new_confirmed) e de novos obitos (new_deaths) para a cidade")
     print("de Rio das Ostras.")
-    #utilizando a outra solucao
-    converter_cidade_modelo_json_D_NC_ND("RioDasOstras.csv", "Rio das Ostras")
+    # utilizando a outra solucao
+    converter_cidade_modelo_json_d_nc_nd("RioDasOstras.csv", "Rio das Ostras")
     print("")
 
-############# fim do exercicio 4 ##################
+# _______________ fim do exercicio 4 _______________
