@@ -2,26 +2,48 @@ import json
 import csv
 
 """
-
-with open("pessoas.csv", 'r') as arquivo_csv:
-    leitor = csv.reader(arquivo_csv, delimiter = ';')
-    leitor.__next__()
-    x = 1
-    for i in leitor:
-        if i[2] == 'f' and int(i[1]) > x:
-            print("Nome: {} | Idade: {}".format(i[0], i[1]))
+Exercicio: implemente uma funcao que leia o arquivo CSV indicado
+pelo professor e imprima todas as mulheres com idade acima de um
+valor x fornecido
 """
 
+
+# definindo a solucao:
+def mulheres_idade_superior_aX(base,x):
+    with open(base, 'r') as arquivo_csv:
+        leitor = csv.reader(arquivo_csv, delimiter = ';')
+
+        # primeira linha tem os titulos de cada coluna
+        # .__next__() retorna o conteudo atual apontado pelo iterator e avanca para o prox
+        cabecalho = leitor.__next__()
+
+        for i in leitor:
+            if i[2] == 'f' and int(i[1]) > x:
+                print("{}: {} | {}: {}".format(cabecalho[0], i[0], cabecalho[1], i[1]))
+
+
+#utilizando a solucao
+mulheres_idade_superior_aX("pessoas.csv",15)
+
+
 """
-with open("teste3.json","r") as arquivo_json:
-    cursos = json.load(arquivo_json)
-    for curso in cursos:
-        quantidade_de_alunos = len(curso['Alunos'])
-        acumulador = 0
-        for pessoa in curso['Alunos']:
-            acumulador += pessoa['idade']
-        print("A media das idades dos alunos do curso de {} é {}".format(curso["Curso"], acumulador / quantidade_de_alunos))
+Exercicio: imprima a media dos alunos de cada curso descrito
+no arquivo teste3.json
 """
+
+# definindo a solucao:
+def media_alunos(base):
+    with open(base, "r") as arquivo_json:
+        cursos = json.load(arquivo_json)
+        for curso in cursos:
+            quantidade_de_alunos = len(curso['Alunos'])
+            acumulador = 0
+            for pessoa in curso['Alunos']:
+                acumulador += pessoa['idade']
+            print("A media das idades dos alunos do curso de {} é {}".format(curso["Curso"], acumulador / quantidade_de_alunos))
+
+#utilizando
+media_alunos("teste3.json")
 
 """
 Exercicio para casa:
@@ -54,8 +76,13 @@ def criar_arquivo_cidade_csv(nome_arquivo_entrada, cidade):
 
     with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
         leitor = csv.reader(arquivo_entrada, delimiter=',')
+        # primeira linha tem os titulos de cada coluna
+        # .__next__() retorna o conteudo atual apontado pelo iterator e avanca para o prox
         titulos = leitor.__next__()
+
         nome_arquivo_saida = cidade.replace(" ", "_") + ".csv"
+
+        # apagando o arquivo se existente e colocando o cabecalho
         with open(nome_arquivo_saida, 'w') as arquivo_saida:
             escritor = csv.writer(arquivo_saida, delimiter=',', lineterminator='\n')
             escritor.writerow(titulos)
@@ -79,7 +106,8 @@ casos (new_confirmed) e de novos obitos (new_deaths) para a cidade
 de Rio das Ostras.
 """
 
-"""nome_arquivo_entrada = "RioDasOstras.csv"
+"""
+nome_arquivo_entrada = "RioDasOstras.csv"
 nome_arquivo_saida = "RioDasOstras.json"
 
 with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
@@ -99,7 +127,8 @@ with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
         with open(nome_arquivo_saida, 'a') as arquivo_de_saida:  # abre para adicionar no fim do arquivo
             # optei por abrir o arquivo diversas vezes(json) para evitar sobrecarregar a memoria
             json.dump(caso, arquivo_de_saida, indent=2)
-    # print("Mortes confirmadas = {} | casos confirmados = {}".format(contador_mortes,contador_confirmados))"""
+    # print("Mortes confirmadas = {} | casos confirmados = {}".format(contador_mortes,contador_confirmados))
+"""
 
 # outra solucao
 def converter_cidade_modelo_json_D_NC_ND(nome_arquivo_entrada,cidade):
