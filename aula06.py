@@ -23,7 +23,14 @@ with open("teste3.json","r") as arquivo_json:
 """
 
 """
-Exercicio pra casa 1
+Exercicio para casa:
+acessar https://brasil.io/dataset/covid19/caso_full/ e baixar o dataset
+ler o arquivo caso_full.csv e criar um arquivo caso_RO.csv com apenas
+as informaçoes da cidade de Rio das Ostras
+"""
+
+
+"""
 nome_arquivo_entrada = "caso_full.csv"
 nome_arquivo_saida = "RioDasOstras.csv"
 with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
@@ -41,8 +48,30 @@ with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
 # o arquivo "RioDasOstras.csv" foi criado no trecho comentado acima
 # caso queira executar o trecho novamente apague o conteudo ou exclua o arquivo "RioDasOstras.csv" ou ficara com dados duplicados
 
+
+#Solucao alternativa:
+def criar_arquivo_cidade(nome_arquivo_entrada,nome_arquivo_saida):
+    #nome_arquivo_entrada = "caso_full.csv"
+    #nome_arquivo_saida = "RioDasOstras.csv"
+    with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
+        leitor = csv.reader(arquivo_entrada, delimiter = ',')
+        leitor.__next__()
+        with open(nome_arquivo_saida, 'w') as arquivo_saida:
+            pass
+        with open(nome_arquivo_saida, 'a') as arquivo_saida:
+            escritor = csv.writer(arquivo_saida, delimiter=',', lineterminator='\n')
+            for linha in leitor:
+                print(linha)
+                if linha[0] == "Rio das Ostras":
+                    escritor.writerow(linha)
+
+
+#utilizando a segunda solucao:
+#criar_arquivo_cidade("caso_full.csv","RioDasOstras.csv")
+
+
 """
-Exercicio em grupo: Leia o arquivo csv do site "Brasil IO" e escreva
+Exercicio para casa: Leia o arquivo csv do site "Brasil IO" e escreva
 em um arquivo JSON, para cada data(date),o numero de novos 
 casos (new_confirmed) e de novos obitos (new_deaths) para a cidade
 de Rio das Ostras.
