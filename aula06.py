@@ -1,12 +1,14 @@
+"""
+todas as funcoes estao do lado de fora das
+condicionais para poder se exportadas
+"""
+
+
 import json
 import csv
+exercicio = ["6_1","6_2","6_3","6_4"]
 
-"""
-Exercicio: implemente uma funcao que leia o arquivo CSV indicado
-pelo professor e imprima todas as mulheres com idade acima de um
-valor x fornecido
-"""
-
+############# inicio do exercicio 1 ##################
 
 # definindo a solucao:
 def mulheres_idade_superior_aX(base,x):
@@ -16,20 +18,22 @@ def mulheres_idade_superior_aX(base,x):
         # primeira linha tem os titulos de cada coluna
         # .__next__() retorna o conteudo atual apontado pelo iterator e avanca para o prox
         cabecalho = leitor.__next__()
-
+        print("As mulheres acima de {} anos sao: ".format(x))
         for i in leitor:
             if i[2] == 'f' and int(i[1]) > x:
                 print("{}: {} | {}: {}".format(cabecalho[0], i[0], cabecalho[1], i[1]))
 
+if("6_1" in exercicio):
+    print("Exercicio: implemente uma funcao que leia o arquivo CSV indicado")
+    print("pelo professor e imprima todas as mulheres com idade acima de um")
+    print("valor x fornecido")
+    #utilizando a solucao
+    mulheres_idade_superior_aX("pessoas.csv",15)
+    print("")
 
-#utilizando a solucao
-mulheres_idade_superior_aX("pessoas.csv",15)
+############# fim do exercicio 1 ##################
 
-
-"""
-Exercicio: imprima a media dos alunos de cada curso descrito
-no arquivo teste3.json
-"""
+############# inicio do exercicio 2 ##################
 
 # definindo a solucao:
 def media_alunos(base):
@@ -42,36 +46,19 @@ def media_alunos(base):
                 acumulador += pessoa['idade']
             print("A media das idades dos alunos do curso de {} é {}".format(curso["Curso"], acumulador / quantidade_de_alunos))
 
-#utilizando
-media_alunos("teste3.json")
+if ("6_2" in exercicio):
+    print("Exercicio: imprima a media dos alunos de cada curso descrito")
+    print("no arquivo teste3.json")
+    #utilizando
+    media_alunos("teste3.json")
+    print("")
 
-"""
-Exercicio para casa:
-acessar https://brasil.io/dataset/covid19/caso_full/ e baixar o dataset
-ler o arquivo caso_full.csv e criar um arquivo caso_RO.csv com apenas
-as informaçoes da cidade de Rio das Ostras
-"""
-
-"""
-nome_arquivo_entrada = "caso_full.csv"
-nome_arquivo_saida = "RioDasOstras.csv"
-with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
-    leitor = csv.reader(arquivo_entrada, delimiter = ',')
-    leitor.__next__()
-    with open(nome_arquivo_saida, 'a') as arquivo_saida:
-        escritor = csv.writer(arquivo_saida, delimiter=',', lineterminator='\n')
-        for linha in leitor:
-            print(linha)
-            if linha[0] == "Rio das Ostras":
-                escritor.writerow(linha)
-"""
+############# fim do exercicio 2 ##################
 
 
-# o arquivo "RioDasOstras.csv" foi criado no trecho comentado acima
-# caso queira executar o trecho novamente apague o conteudo ou exclua o arquivo "RioDasOstras.csv" ou ficara com dados duplicados
+############# inicio do exercicio 3 ##################
 
-
-# Solucao alternativa:
+# Solucao:
 def criar_arquivo_cidade_csv(nome_arquivo_entrada, cidade):
 
     with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
@@ -94,43 +81,22 @@ def criar_arquivo_cidade_csv(nome_arquivo_entrada, cidade):
                 if linha[0] == cidade:
                     escritor.writerow(linha)
 
+if ("6_3" in exercicio):
+    print("Exercicio para casa:")
+    print("acessar https://brasil.io/dataset/covid19/caso_full/ e baixar o dataset")
+    print("ler o arquivo caso_full.csv e criar um arquivo caso_RO.csv com apenas")
+    print("as informaçoes da cidade de Rio das Ostras")
+    # utilizando a solucao:
+    criar_arquivo_cidade_csv("caso_full.csv","Rio das Ostras")
+    print("arquivo criado com sucesso!")
+    print("")
 
-# utilizando a segunda solucao:
-criar_arquivo_cidade_csv("caso_full.csv","Rio das Ostras")
+############# fim do exercicio 3 ##################
 
 
-"""
-Exercicio para casa: Leia o arquivo csv do site "Brasil IO" e escreva
-em um arquivo JSON, para cada data(date),o numero de novos 
-casos (new_confirmed) e de novos obitos (new_deaths) para a cidade
-de Rio das Ostras.
-"""
+############# inicio do exercicio 4 ##################
 
-"""
-nome_arquivo_entrada = "RioDasOstras.csv"
-nome_arquivo_saida = "RioDasOstras.json"
-
-with open(nome_arquivo_entrada, 'r') as arquivo_entrada:
-    leitor = csv.reader(arquivo_entrada, delimiter=',')
-    titulos = ["city", "city_ibge_code", "date", "epidemiological_week", "estimated_population_2019", "is_last",
-               "is_repeated", "last_available_confirmed", "last_available_confirmed_per_100k_inhabitants",
-               "last_available_date", "last_available_death_rate", "last_available_deaths", "order_for_place",
-               "place_type", "state", "new_confirmed", "new_deaths"]
-    # contador_confirmados = 0
-    # contador_mortes = 0
-    for linha in leitor:
-        # as entradas do arquivo de origem é por data, logo e so passar para o arquivo em json
-        caso = {titulos[2]: linha[2], titulos[-2]: int(linha[-2]), titulos[-1]: int(linha[-1])}
-        # contador_confirmados += int(linha[-2]) #contadores nao pedido no exercicio
-        # contador_mortes += int(linha[-1])
-
-        with open(nome_arquivo_saida, 'a') as arquivo_de_saida:  # abre para adicionar no fim do arquivo
-            # optei por abrir o arquivo diversas vezes(json) para evitar sobrecarregar a memoria
-            json.dump(caso, arquivo_de_saida, indent=2)
-    # print("Mortes confirmadas = {} | casos confirmados = {}".format(contador_mortes,contador_confirmados))
-"""
-
-# outra solucao
+# Solucao
 def converter_cidade_modelo_json_D_NC_ND(nome_arquivo_entrada,cidade):
     # cria um csv para a cidade
     criar_arquivo_cidade_csv(nome_arquivo_entrada, cidade)
@@ -155,6 +121,13 @@ def converter_cidade_modelo_json_D_NC_ND(nome_arquivo_entrada,cidade):
                 # optei por abrir o arquivo diversas vezes(json) para evitar sobrecarregar a memoria
                 json.dump(caso, arquivo_de_saida, indent=2)
 
+if ("6_4" in exercicio):
+    print("Exercicio para casa: Leia o arquivo csv do site 'Brasil IO' e escreva")
+    print("em um arquivo JSON, para cada data(date),o numero de novos ")
+    print("casos (new_confirmed) e de novos obitos (new_deaths) para a cidade")
+    print("de Rio das Ostras.")
+    #utilizando a outra solucao
+    converter_cidade_modelo_json_D_NC_ND("RioDasOstras.csv", "Rio das Ostras")
+    print("")
 
-#utilizando a outra solucao
-converter_cidade_modelo_json_D_NC_ND("RioDasOstras.csv", "Rio das Ostras")
+############# fim do exercicio 4 ##################
