@@ -1,20 +1,3 @@
-"""
-todas as funcoes estao do lado de fora das
-condicionais para poder se exportadas
-para utilizar o arquivo caso_full.csv sem
-baixar do site (nao sera o dataset atualizado)
-basta descompactar o arquivo
-caso_full.csv.gz(esta no github junto com esse script
-https://github.com/juniorjrml/CursoDePythonComDalessandro/ )
-e colocar o caso_full.csv na mesma pasta deste script
-para ver o resultado de algum dos exercicio basta
-colocar uma string com o numero da aula + _ + o
-numero do exercicio na lista exercicios ex.:
-exercicios = ["6_1"]
-ou
-exercicios.append("6_2")
-"""
-
 
 import json
 import csv
