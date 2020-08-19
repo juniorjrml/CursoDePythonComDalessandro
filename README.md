@@ -11,6 +11,9 @@ número do exercicio na variavel(lista) chamada exercicios.
 ex.:
 exercicios = ["6_1"] ou exercicios.append("6_2")
 
+os exercicios mesmo quando simples estão sendo implementados
+de forma a aumentar a quantidade de ferramentas e soluções
+como proposto pelo professor, utilizar boa pratica de programação
 
 Para utilizar o arquivo caso_full.csv sem
 baixar do site do governo (nao será o dataset atualizado)
