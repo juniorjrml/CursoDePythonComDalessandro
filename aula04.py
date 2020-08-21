@@ -42,9 +42,10 @@ acoes_do_menu e respectivamente o numero que sera selecionado
 na variavel(lista) escolha_do_menu
 ex.:
 
-textos_do_menu[0] = 
-acoes_do_menu[0] = 
-escolha_do_menu[0] = 
+textos_do_menu[0] = "para adicionar 1 elemento"
+acoes_do_menu[0] =  99
+escolha_do_menu[0] =  add # função que recebe a estrutura 
+                          # e coleta o elemento a ser inserido
 
 """
 if(10 in exercicio):
