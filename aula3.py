@@ -23,6 +23,36 @@ def remove_elemento(estrutura):
     except:
         print("elemento invalido!")
 
+"""
+
+o objetivo em fazer um menu mais complexo e 
+para poder reutilizar com qualquer tipo de 
+dado e poder acrescentar qualquer opção (as 
+opções de coletas e todo o resto deve ser 
+implementada dentro da função que sera 
+acionada na opçãço selecionada(dentro da 
+variavel acoes_do_menu))
+
+as funcoes devem conter apenas 1 parametro(a 
+estrutura) com exceção da função de saida do 
+looping
+
+para utilizar basta colocar o texto a ser 
+impresso como descrição da opção na 
+variavel(lista) textos_do_menu
+respectivamente(no mesmo indice) a função 
+com as ações desejadas na variavel(lista) 
+acoes_do_menu e respectivamente o numero que sera selecionado 
+na variavel(lista) escolha_do_menu
+ex.:
+
+textos_do_menu[0] = "para adicionar 1 elemento"
+acoes_do_menu[0] =  99
+escolha_do_menu[0] =  add # função que recebe a estrutura 
+                          # e coleta o elemento a ser inserido
+
+"""
+
 
 if "3_menu" in exercicio:
     print("*" * 20, "inicio do exercicio 1", "*" * 20)
@@ -38,32 +68,29 @@ if "3_menu" in exercicio:
     print("seja selecionada.\n\n")
 
     textos_do_menu = [
-        "1. Inserir um Elemento x na lista",
-        "2. Remover um Elemento x da lista",
-        "3. Imprimir a lista",
-        "4. Contar o numero de ocorrencias de um elemento x",
-        "5. Imprimir os elementos inteiros da lista",
-        "6. Sair"
-    ]
-
+        " Inserir um Elemento x na lista",
+        " Remover um Elemento x da lista",
+        " Imprimir a lista",
+        " Contar o numero de ocorrencias de um elemento x",
+        " Imprimir os elementos inteiros da lista",
+        " Sair"
+        ]
     acoes_do_menu = [
-        lambda lista: adicionar_elementos(lista, quantidade=1),
-        # caso queira adicionar mais de um elemento por vez basta
-        # remover a função lambda e deixar apenas adicionar_elementos
+        lambda lista: adicionar_elementos(lista,quantidade=1),
         remove_elemento,
         lambda lista: [print(i) for i in lista],
         contar_elemento,
-        lambda lista: mostrar_elementos_do_tipo(lista, int),
-        lambda: print("Saindo...")]
+        lambda lista: mostrar_elementos_do_tipo(lista,int),
+        lambda : print("Saindo...")]
     escolha_do_menu = [1, 2, 3, 4, 5, 6]
-
     menu = [textos_do_menu, escolha_do_menu, acoes_do_menu]
     lista = []
     while True:
         try:
             for i in menu[0]:
-                print(i)
-            opcao = int(coletar_numero())
+                print("{}.".format(escolha_do_menu[textos_do_menu.index(i)]) + i)
+            print("\n\n\n\n")
+            opcao = int(input("Digite a opção desejada: "))
             try:
                 menu[2][menu[1].index(opcao)](lista)  # So 1 funcao não recebe a lista como parametro(1parametro apenas)
             except:
@@ -73,7 +100,6 @@ if "3_menu" in exercicio:
                 except:
                     print("Algo deu Errado :(")  # Se for passado um numero fora do alcance da lista !
                     raise
-            print("\n\n")
         except:
             print("opção inexistente")
 
