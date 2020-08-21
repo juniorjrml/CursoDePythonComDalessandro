@@ -19,16 +19,43 @@ def remove_elemento(lista):
         lista.remove(elemento)
     except:
         print("elemento invalido!")
+"""
 
+o objetivo em fazer um menu mais complexo e 
+para poder reutilizar com qualquer tipo de 
+dado e poder acrescentar qualquer opção (as 
+opções de coletas e todo o resto deve ser 
+implementada dentro da função que sera 
+acionada na opçãço selecionada(dentro da 
+variavel acoes_do_menu))
+
+as funcoes devem conter apenas 1 parametro(a 
+estrutura) com exceção da função de saida do 
+looping
+
+para utilizar basta colocar o texto a ser 
+impresso como descrição da opção na 
+variavel(lista) textos_do_menu
+respectivamente(no mesmo indice) a função 
+com as ações desejadas na variavel(lista) 
+acoes_do_menu e respectivamente o numero que sera selecionado 
+na variavel(lista) escolha_do_menu
+ex.:
+
+textos_do_menu[0] = 
+acoes_do_menu[0] = 
+escolha_do_menu[0] = 
+
+"""
 if(10 in exercicio):
     print("*" * 20, "inicio do exercicio para casa 1", "*" * 20)
     textos_do_menu = [
-        "1. Inserir um Elemento x na lista",
-        "2. Remover um Elemento x da lista",
-        "3. Imprimir a lista",
-        "4. Contar o numero de ocorrencias de um elemento x",
-        "5. Imprimir os elementos inteiros da lista",
-        "6. Sair"
+        "{}. Inserir um Elemento x na lista",
+        "{}. Remover um Elemento x da lista",
+        "{}. Imprimir a lista",
+        "{}. Contar o numero de ocorrencias de um elemento x",
+        "{}. Imprimir os elementos inteiros da lista",
+        "{}. Sair"
         ]
     acoes_do_menu = [
         lambda lista: adicionar_elementos(lista,quantidade=1),
@@ -43,7 +70,7 @@ if(10 in exercicio):
     while True:
         try:
             for i in menu[0]:
-                print(i)
+                print("{}.".format(escolha_do_menu[textos_do_menu.index(i)]) + i)
             opcao = int(input("Digite a opção desejada: "))
             try:
                 menu[2][menu[1].index(opcao)](lista)  # So 1 funcao não recebe a lista como parametro(1parametro apenas)
