@@ -1,5 +1,5 @@
-exercicio = [4]
-############# inicio exercicio para casa 1 ##################
+exercicio = []
+# ------------------- inicio exercicio para casa 1 -------------------
 from aula2 import adicionar_elementos, mostrar_elementos_do_tipo,converter_para_tipo_do_elemento
 
 def coletar_elemento():
@@ -31,14 +31,14 @@ if(10 in exercicio):
         "6. Sair"
         ]
     acoes_do_menu = [
-        lambda lista: adicionar_elementos(lista,quantidade=1),#caso queira adicionar mais de um elemento por vez basta remover a função lambda e deixar apenas adicionar_elementos
+        lambda lista: adicionar_elementos(lista,quantidade=1),
         remove_elemento,
         lambda lista: [print(i) for i in lista],
         contar_elemento,
         lambda lista: mostrar_elementos_do_tipo(lista,int),
         lambda : print("Saindo...")]
-    escolha_do_menu = [1,2,3,4,5,6]
-    menu = [textos_do_menu,escolha_do_menu,acoes_do_menu]
+    escolha_do_menu = [1, 2, 3, 4, 5, 6]
+    menu = [textos_do_menu, escolha_do_menu, acoes_do_menu]
     lista = []
     while True:
         try:
@@ -57,7 +57,7 @@ if(10 in exercicio):
         except:
             print("opção inexistente")
     print("*" * 20, 'fim do exercicio para casa 1', "*" * 20)
-############# fim exercicio para casa 1 ##################
+# ------------------- fim exercicio para casa 1 -------------------
 
 
 ############# inicio exercicio 3 ##################
@@ -79,19 +79,19 @@ if (3 in exercicio):
         print(chave,valor)
     print("*" * 20, 'fim do exercicio 3', "*" * 20)
 ############# fim exercicio 3 ##################
+def leitura_de_matriz(num_linhas,num_colunas):
+    matriz = []
+    for linha in range(num_linhas):
+        matriz.append([coletar_elemento() for _ in range(num_colunas)])
+    return matriz
+
+def mostrar_matriz(matriz):
+    for linha in matriz:
+        for coluna in linha:
+            print(coluna,end='\t')
+        print("")
 
 if(4 in exercicio):
-    def leitura_de_matriz(num_linhas,num_colunas):
-        matriz = []
-        for linha in range(num_linhas):
-            matriz.append([coletar_elemento() for _ in range(num_colunas)])
-        return matriz
-
-    def mostrar_matriz(matriz):
-        for linha in matriz:
-            for coluna in linha:
-                print(coluna,end='\t')
-            print("")
 
     def soma_de_matrizes(matriz1,matriz2):
         matriz_resultante = []
